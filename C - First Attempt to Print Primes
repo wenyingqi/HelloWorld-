@@ -1,0 +1,48 @@
+/* This is the first program to make application of nested loops. It prints all the prime numbers under a boundary N.*/
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+int main(void) {
+
+	int primecandidate;
+	int primedivisor;
+	double prime;
+	int boundary;
+
+	printf("Please enter your boundary here:\n");
+	scanf("%d", &boundary);
+
+	printf("\n\n2\n");
+
+	primecandidate = 3;
+
+	while (primecandidate <= boundary) {
+
+		primedivisor = 3;
+		prime = 1;
+
+		while (primedivisor < sqrt(primecandidate)) {
+
+			prime = prime * ( primecandidate %  primedivisor);
+
+			prime = (pow(2.0, prime) - 1) / (pow(2.0, prime) + 1);
+
+			primedivisor = primedivisor +1;
+		}
+
+		if (prime != 0)
+
+			printf("%d \n", primecandidate);
+
+		primecandidate = primecandidate + 1;
+	}
+	system ("PAUSE");
+	return 0;
+
+
+}
