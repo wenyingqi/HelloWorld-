@@ -1,0 +1,67 @@
+/*Quadratic Solver*/
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <math.h>
+
+int main(void) {
+
+	float a;
+	float b;
+	float c;
+	float S0;
+	float S;
+	float S1;
+	float S2;
+	float ReS;
+	float ImS;
+
+
+	printf("THE QUADRATIC EQUATION SOLVER\n");
+
+	printf("Enter the value of a \n");
+	scanf("%f", &a);
+	printf("Enter the value of b\n");
+	scanf("%f", &b);
+	printf("Enter the value of c\n");
+	scanf("%f", &c);
+
+	if (a == 0) {
+
+		if (b != 0) {
+			S0 = -c / b;
+			printf("This is a linear equation. x = %f\n", S0);
+		}
+		else {
+			if (c != 0)
+				printf("Error: false statement\n");
+			else
+				printf("True statement\n");
+		}
+	}
+	else {
+
+		if (b * b - 4 * a * c < 0) {
+			ReS = -b / (2 * a);
+			ImS = sqrt(4 * a * c - b * b) / (2 * a);
+
+			printf("The equation has no real solution. x = %f + %f i, x = %f - %f i\n", ReS, ImS, ReS, ImS);
+		}
+		else {
+
+			if (b * b - 4 * a * c == 0) {
+				S = -b / (2 * a);
+				printf("x = %f \n", S);
+			}
+			else {
+				S1 = (-b - sqrt(b * b - 4 * a * c)) / (2 * a);
+				S2 = (-b + sqrt(b * b - 4 * a * c)) / (2 * a);
+				printf("x = %f, x = %f\n", S1, S2);
+			}
+		}
+	}
+	system("PAUSE");
+
+	return 0;
+}
