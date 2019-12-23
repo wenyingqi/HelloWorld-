@@ -1,0 +1,26 @@
+/* Range Calculator */
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+
+#include <stdio.h>
+#include <math.h>
+#define Gravity 9.81
+
+int main(void) {
+	float angle_of_elevation;
+	float speed;
+	float range;
+
+	printf("Angle of elevation = \n");
+	scanf("%f", &angle_of_elevation);
+	printf("Speed = \n");
+	scanf("%f", &speed);
+
+	range = (speed / Gravity) * sin(2 * angle_of_elevation);
+	printf("The range is %f \n", range);
+
+	system("PAUSE");
+	return 0;
+}
