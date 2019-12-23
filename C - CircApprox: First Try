@@ -1,0 +1,82 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+#define GRAPHWIDTH 101
+#define GRAPHLENGTH 101
+#define CHAR1 '*'
+#define CHAR2 'X'
+#define CHAR3 '-'
+
+void GenerateMatrix(int num1, int num2, double data[][GRAPHWIDTH]);
+void GenerateGraph(int num1, int num2, double data1[][GRAPHWIDTH], char data2[][GRAPHWIDTH]);
+void PrintGraph(int num1, int num2, char data[][GRAPHWIDTH]);
+
+int main(void) {
+
+	double rawgraph[GRAPHLENGTH][GRAPHWIDTH];
+	char printgraph[GRAPHLENGTH][GRAPHWIDTH];
+	
+	GenerateMatrix(GRAPHLENGTH, GRAPHWIDTH, rawgraph);
+	GenerateGraph(GRAPHLENGTH, GRAPHWIDTH, rawgraph, printgraph);
+	PrintGraph(GRAPHLENGTH, GRAPHWIDTH, printgraph);
+
+
+	system("PAUSE");
+	return 0;
+}
+
+void GenerateMatrix(int num1, int num2, double data[][GRAPHWIDTH]) {
+
+	int countrow;
+	int countcolumn;
+
+	for (countrow = 0; countrow < GRAPHLENGTH; countrow++) {
+		for (countcolumn = 0; countcolumn < GRAPHWIDTH; countcolumn++) {
+			data[countrow][countcolumn] = (countrow - GRAPHLENGTH / 2) * (countrow - GRAPHLENGTH / 2) + 
+										  (countcolumn - GRAPHWIDTH / 2) * (countcolumn - GRAPHWIDTH / 2);
+		}
+	}
+
+	return;
+}
+
+
+void GenerateGraph(int num1, int num2, double data1[][GRAPHWIDTH], char data2[][GRAPHWIDTH]) {
+
+	int countrow;
+	int countcolumn;
+
+	for (countrow = 0; countrow < GRAPHLENGTH; countrow++) {
+		for (countcolumn = 0; countcolumn < GRAPHWIDTH; countcolumn++) {
+			
+			if (data1[countrow][countcolumn] < 961) {
+				data2[countrow][countcolumn] = CHAR1;
+			}
+			else {
+				if (data1[countrow][countcolumn] < 1024) 
+					data2[countrow][countcolumn] = CHAR2;
+	
+				else 
+					data2[countrow][countcolumn] = CHAR3;
+			}
+		}
+	}
+	return;
+}
+
+void PrintGraph(int length, int width, char data[][GRAPHWIDTH]) {
+
+	int countrow;
+	int countcolumn;
+
+	for (countrow = 0; countrow < length; countrow++) {
+		for (countcolumn = 0; countcolumn < width; countcolumn++)
+			printf("%c ", data[countrow][countcolumn]);
+		printf("\n");
+	}
+	return;
+}
