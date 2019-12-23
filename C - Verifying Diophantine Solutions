@@ -1,0 +1,24 @@
+/* This is a brief check to all solutions of the diophantine equation x^3 + y^3 - 3xy*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+int main(void) {
+
+	int count1;
+	int count2;
+	int f;
+
+	for (count1 = -5; count1 <= 5; count1++) {
+		for (count2 = -5; count2 <= 5; count2++) {
+			f = (count1 * count1* count1) +(count2 * count2* count2) -(count1 * count2 * count2 * 3);
+			printf("%8d", f);
+		}
+		printf("\n");
+	}
+
+	system("PAUSE");
+	return 0;
+}
