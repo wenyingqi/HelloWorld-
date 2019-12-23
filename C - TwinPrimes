@@ -1,0 +1,89 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+int prime(int);                 /* Determines whether a number is prime or not */
+int printprime(int);            /* Prints all prime numbers under a boundary */
+int twinprime(int);             /* Prints and counts all pairs of twin primes under a boundary */
+
+
+
+int main(void) {
+	int boundary;
+	int number;
+
+	printf("Enter the boundary here please:\n");
+	scanf("%d", &boundary);
+
+	number = twinprime(boundary);
+	
+	printf("\nThere are %d pairs of twin prime numbers between 1 and %d.\n", number, boundary);
+
+	system("PAUSE");
+	return 0;
+}
+
+
+int prime(int num) {
+
+	int divisor;
+	int primeornot;
+
+	divisor = 2;
+	primeornot = 1;
+
+	while (divisor < num) {
+
+		if (num % divisor == 0) {
+			primeornot = 0;
+			divisor = num;
+		}
+		divisor++;
+	}
+	return primeornot;
+}
+
+int printprime(int num) {
+
+	int count;
+	int primeornot;
+	int number;
+
+	number = 1;
+
+	count = 3;
+	printf("2\n");
+	while (count <= num) {
+
+		if (prime(count) == 1) {
+			printf("%d\n", count);
+			number++;
+		}
+		count++;
+	}
+	return number;
+}
+
+int twinprime(int num) {
+
+	int count;
+	int twincandidate;
+
+	count = 0;
+	twincandidate = 3;
+
+	while (twincandidate <= num - 2) {
+
+		if (prime(twincandidate) == 1 && prime(twincandidate + 2) == 1) {
+
+			printf("(%d, %d)\n", twincandidate, twincandidate + 2);
+			count++;
+		}
+
+		twincandidate++;
+	}
+	return count;
+}
