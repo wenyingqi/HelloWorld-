@@ -1,0 +1,42 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+
+int main(void) {
+
+	int primedivisor;
+	int count1;
+	int boundary;
+	int primeornot;
+	int primecount;
+	double primedensity;
+
+	printf("Enter the boundary here:\n");
+	scanf("%d", &boundary);
+
+
+	count1 = 2;
+	primecount = 0;
+	while (count1 <= boundary) {
+
+		primeornot = 1;
+		primedivisor = 2;
+
+			while (primedivisor < count1) {
+			
+				if (count1 % primedivisor == 0)
+					primeornot = 0;
+				primedivisor++;
+		}
+		if (primeornot != 0) {
+			primecount++;
+		}
+		count1++;
+	}
+	primedensity = (double)primecount / (double)boundary;
+	printf("The number of prime is %d. The prime density is %f.\n", primecount, primedensity);
+
+	system("PAUSE");
+	return 0;
+
+}
