@@ -1,0 +1,27 @@
+/* Volume of a Cone Calculator */
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <math.h>
+#define PI 3.14
+
+int main(void) {
+	float radius;
+	float height;
+	float volume;
+
+	printf("Radius of the cone:\n");
+	scanf("%g", &radius);
+
+	printf("Height of the cone:\n");
+	scanf("%g", &height);
+
+	volume = (1.0 / 3.0) * radius * radius * PI * height;
+
+	printf("The volume of the cone is %g\n", volume);
+
+	system("PAUSE");
+
+	return 0;
+}
