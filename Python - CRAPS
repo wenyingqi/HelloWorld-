@@ -1,0 +1,26 @@
+from random import randint
+
+while True:
+	a = randint(1, 6)
+	b = randint(1, 6)
+	Init = a + b
+
+	print('Dice 1 = %d, Dice 2 = %d, Your Roll: %d' %(a, b, a + b))
+	if a + b == 7:
+		print('Host Wins')
+		break
+	elif a + b == 2 or a + b == 3 or a + b == 12:
+		print('You Win')
+		break
+	while True:
+		a = randint(1, 6)
+		b = randint(1, 6)
+		print('Dice 1 = %d, Dice 2 = %d, Your Roll: %d' %(a, b, a + b))
+
+		if a + b == Init:
+			print('You Win')
+			break
+		elif a + b == 7:
+			print('Host Wins')
+			break
+	break
