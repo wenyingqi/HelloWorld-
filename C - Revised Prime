@@ -1,0 +1,30 @@
+/* I was having trouble debugging a code and Professor Ed Knorr wrote this alternate solution! */
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <math.h>
+
+
+int main(void) {
+
+	int primecandidate;
+	int primedivisor;
+	int prime;
+	int boundary;
+
+	printf("Please enter your boundary here:\n");
+
+	scanf("%d", &primecandidate);
+	primedivisor = 2;
+
+	while (primedivisor < sqrt(primecandidate) && ((primecandidate % primedivisor) != 0)){
+
+		primecandidate++; 
+	}
+	if (primedivisor < sqrt(primecandidate))
+		printf("%d\n", --primecandidate);
+
+	system("PAUSE");
+	return 0;
+}
