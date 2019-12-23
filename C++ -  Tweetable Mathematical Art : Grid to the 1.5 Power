@@ -1,0 +1,134 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+#define DIM 1024
+#define DM1 (DIM-1)
+#define _sq(x) ((x)*(x)) // square
+#define _cb(x) abs((x)*(x)*(x)) // absolute value of cube
+#define _cr(x) (unsigned char)(pow((x),1.0/3.0)) // cube root
+
+#define PI acos(-1.0)
+#define SCALE 60
+
+unsigned char GR(int, int);
+unsigned char BL(int, int);
+int Scale(double);
+
+unsigned char RD(int i, int j) {
+	
+	double xint;
+	double yint;
+	double val;
+	double v1;
+	double v2;
+
+	xint = (double)(i - 512) / SCALE;
+	yint = (double)(j - 512) / SCALE;
+
+	v1 = 0;
+	v2 = 0;
+
+	if (cos(PI * cos(pow(fabs(xint), 1.5))) < cos(PI * cos(pow(fabs(yint), 1.5)))) {
+		v1 = 184;
+	}
+
+	return 255 - v1 - v1;
+}
+
+
+unsigned char GR(int i, int j) {
+
+	double xint;
+	double yint;
+	double val;
+	double v1;
+	double v2;
+
+	xint = (double) (i - 512) / SCALE;
+	yint = (double) (j - 512) / SCALE;
+	
+	v1 = 0;
+	v2 = 0;
+
+	if (sin(PI * sin(pow(fabs(xint), 1.5)) > sin(PI * sin(pow(fabs(yint), 1.5))))) {
+		v1 = 184;
+	}
+
+	return 255 - v1 -v2;
+}
+
+
+unsigned char BL(int i, int j) {
+
+	double xint;
+	double yint;
+	double val;
+
+	double v1;
+	double v2;
+
+	v1 = 0;
+	v2 = 0;
+
+	xint = (double)(i - 512) / SCALE;
+	yint = (double)(j - 512) / SCALE;
+
+	if (sin(PI * sin(pow(fabs(xint), 1.5))) < sin(PI * sin(pow(fabs(yint), 1.5)))) {
+		v1 = 54;
+	}
+
+	return 255 - v1 - v1;
+}
+
+
+int Scale(double input) {
+
+	double det;
+
+	if (input >= 0) {
+		det = fmod(input, 6);
+		if (det > 1 && det < 3)
+			return 255;
+		if (det > 4)
+			return 0;
+		if (det <= 1)
+			return (int)(255 * (det));
+		if (det >= 3  && det <= 4)
+			return (int)(255 * (4 - det));
+	}
+	else {
+		det = (-1) * input;
+		det = fmod(input, 6);
+		if (det < 2)
+			return 0;
+		if (det >= 2 && det <= 3)
+			return (int)(255 * (det - 2));
+		if (det >= 3 && det <= 5)
+			return 255;
+		if (det > 5)
+			return (int)(255 * (5 - det));
+	}
+}
+
+
+
+void pixel_write(int, int);
+FILE *fp;
+int main() {
+	fp = fopen("000000.ppm", "wb");
+	fprintf(fp, "P6\n%d %d\n255\n", DIM, DIM);
+	for (int j = 0; j < DIM; j++)
+		for (int i = 0; i < DIM; i++)
+			pixel_write(i, j);
+	fclose(fp);
+	return 0;
+}
+void pixel_write(int i, int j) {
+	static unsigned char color[3];
+	color[0] = RD(i, j) & 255;
+	color[1] = GR(i, j) & 255;
+	color[2] = BL(i, j) & 255;
+	fwrite(color, 1, 3, fp);
+}
