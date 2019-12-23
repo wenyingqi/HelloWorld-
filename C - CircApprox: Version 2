@@ -1,0 +1,144 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+#define GRAPHWIDTH 101
+#define GRAPHLENGTH 101
+#define THRESHOLD 115
+#define ALTERNATE_THRESHOLD 1088
+#define CHAR1 '*'
+#define CHAR2 'o'
+#define CHAR3 ' '
+#define CHAR4 '*'
+
+void GenerateMatrix(int num1, int num2, double data[][GRAPHWIDTH]);
+void GenerateGraph(int num1, int num2, double data1[][GRAPHWIDTH], char data2[][GRAPHWIDTH]);
+void PrintGraph(int num1, int num2, char data[][GRAPHWIDTH]);
+void PrintDifference(int num1, int num2, double data1[][GRAPHWIDTH], char data2[][GRAPHWIDTH]);
+int CountGrid(int num1, int num2, int num3, double data[][GRAPHWIDTH]);
+
+int main(void) {
+
+	double rawgraph[GRAPHLENGTH][GRAPHWIDTH];
+	char printgraph[GRAPHLENGTH][GRAPHWIDTH];
+	int determinant;
+	
+	printf("Enter 0 to count the number of grids. Enter 1 to Produce graph. Enter 2 to see the difference.\n");
+	scanf("%d", &determinant);
+
+	if (determinant > 0) {
+		if (determinant == 1) {
+			GenerateMatrix(GRAPHLENGTH, GRAPHWIDTH, rawgraph);
+			GenerateGraph(GRAPHLENGTH, GRAPHWIDTH, rawgraph, printgraph);
+			PrintGraph(GRAPHLENGTH, GRAPHWIDTH, printgraph);
+		}
+		else {
+			GenerateMatrix(GRAPHLENGTH, GRAPHWIDTH, rawgraph);
+			PrintDifference(GRAPHLENGTH, GRAPHWIDTH, rawgraph, printgraph);
+			PrintGraph(GRAPHLENGTH, GRAPHWIDTH, printgraph);
+		}
+	}
+	else {
+		GenerateMatrix(GRAPHLENGTH, GRAPHWIDTH, rawgraph);
+		printf("The approximated number of grid is %d\n.", CountGrid(GRAPHLENGTH, GRAPHWIDTH, THRESHOLD, rawgraph));
+	}
+	
+	system("PAUSE");
+	return 0;
+}
+
+void GenerateMatrix(int num1, int num2, double data[][GRAPHWIDTH]) {
+
+	int countrow;
+	int countcolumn;
+
+	for (countrow = 0; countrow < GRAPHLENGTH; countrow++) {
+		for (countcolumn = 0; countcolumn < GRAPHWIDTH; countcolumn++) {
+			data[countrow][countcolumn] = (countrow - GRAPHLENGTH / 2) * (countrow - GRAPHLENGTH / 2) + 
+										  (countcolumn - GRAPHWIDTH / 2) * (countcolumn - GRAPHWIDTH / 2);
+		}
+	}
+
+	return;
+}
+
+
+void GenerateGraph(int num1, int num2, double data1[][GRAPHWIDTH], char data2[][GRAPHWIDTH]) {
+
+	int countrow;
+	int countcolumn;
+
+	for (countrow = 0; countrow < GRAPHLENGTH; countrow++) {
+		for (countcolumn = 0; countcolumn < GRAPHWIDTH; countcolumn++) {
+			
+			if (data1[countrow][countcolumn] < 0) {
+				data2[countrow][countcolumn] = CHAR1;
+			}
+			else {
+				if (data1[countrow][countcolumn] < THRESHOLD) 
+					data2[countrow][countcolumn] = CHAR2;
+	
+				else 
+					data2[countrow][countcolumn] = CHAR3;
+			}
+		}
+	}
+	return;
+}
+
+void PrintGraph(int length, int width, char data[][GRAPHWIDTH]) {
+
+	int countrow;
+	int countcolumn;
+
+	for (countrow = 0; countrow < length; countrow++) {
+		for (countcolumn = 0; countcolumn < width; countcolumn++)
+			printf("%c ", data[countrow][countcolumn]);
+		printf("\n");
+	}
+	return;
+}
+
+void PrintDifference(int num1, int num2, double data1[][GRAPHWIDTH], char data2[][GRAPHWIDTH]) {
+
+	int countrow;
+	int countcolumn;
+
+	for (countrow = 0; countrow < GRAPHLENGTH; countrow++) {
+		for (countcolumn = 0; countcolumn < GRAPHWIDTH; countcolumn++) {
+
+			if (data1[countrow][countcolumn] < THRESHOLD) {
+				data2[countrow][countcolumn] = CHAR2;
+			}
+			else {
+				if (data1[countrow][countcolumn] < ALTERNATE_THRESHOLD)
+					data2[countrow][countcolumn] = CHAR4;
+
+				else
+					data2[countrow][countcolumn] = CHAR3;
+			}
+		}
+	}
+	return;
+
+
+}
+
+int CountGrid(int length, int width, int treshold, double data[][GRAPHWIDTH]) {
+
+	int count;
+	int countrow;
+	int countcolumn;
+
+	count = 0;
+	for (countrow = 0; countrow < length; countrow++) {
+		for (countcolumn = 0; countcolumn < width; countcolumn++) {
+			if (data[countrow][countcolumn] < treshold)
+				count++;
+		}
+	}
+	return count;
+}
