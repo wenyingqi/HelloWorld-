@@ -1,0 +1,37 @@
+print('Enter how big your Christmas tree should be!')
+num = int(input())
+
+def top(num):
+    for w in range(1, 4, 1):
+        for x in range(2 * num - w + 1):
+            print('  ', end = "")
+        for y in range(2 * w - 1):
+            print('* ', end = "")
+        print("\n", end = "")
+  
+
+def body(num, pos):
+    for w in range(1, 4, 1):
+        for x in range(2 * num - w + 1 - pos):
+            print('  ', end = "")
+        for y in range(2 * w - 1 + 2 * pos):
+            print('* ', end = "")
+        print("\n", end = "")
+
+def trunk(num):
+    for w in range(1, 4, 1):
+        for x in range(2 * num - 1):
+            print('  ', end = "")
+        for y in range(3):
+            print('* ', end = "")
+        print("\n", end = "")
+def main():
+    top(num)
+    pos = 1
+    for count in range(num):
+        body(num, pos)
+        pos = pos + 1
+    trunk(num)
+    print('Merry Christmas!')
+
+main()
