@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define N 16
+#define max 70
+
+
+int main(void) {
+
+	int arr[N];
+	int arr2[N];
+	int i;
+	int count;
+
+	/*Initiating each array*/
+	for (i = 0; i < N; i++) {
+		arr[i] = 0;
+		arr2[i] = 0;
+	}
+	arr[0] = 1;
+	
+	for (i = 0; i < N; i++) {
+		printf("%d", arr[i]);
+	}
+	printf("\n");
+
+	for (count = 0; count < max; count++) {
+
+		/*Computing the new array*/
+
+		if (arr[0] == arr[1]) {
+			arr[0] = 0;
+		}
+		else {
+			arr[0] = 1;
+		}
+
+		if (arr[N-2] == arr[N-1]) {
+			arr[N-1] = 0;
+		}
+		else {
+			arr[N-1] = 1;
+		}
+
+		for (i = 1; i < N-1; i++) {
+
+			if (arr[i - 1] == arr[i] && arr[i] == arr[i + 1]) {
+				arr2[i] = 0;
+			}
+			else {
+				arr2[i] = 1;
+			}
+		}
+
+		/*Copying the array*/
+
+		for (i = 0; i < N; i++) {
+			arr[i] = arr2[i];
+		}
+
+		/*Priting the array*/
+
+		for (i = 0; i < N; i++) {
+			printf("%d", arr[i]);
+		}
+		printf("\n");
+	}
+
+	system("PAUSE");
+	return 0;
+}
