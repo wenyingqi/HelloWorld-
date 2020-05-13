@@ -3,6 +3,8 @@
  * The videos on video game are for graphics programming. And the reason why this prototype
  * is far from the final game is because of it's lack of graphics (all you see is a bunch of X and O).
  * A complete game involves sound, graphics, and proper user interface, which the prototype has none of.
+ * In other words, this can be copy and pasted to any C compiler and run. 
+ * And, nothing you will learn in the videos appears in this prototype.
  * Therefore I say that these lines of code only consists the mechanism (algorithm) of the game.
  * Nonetheless, this prototype is still a playable "game". 
  * This game needs two players. One player is the O and the other player is the X. 
