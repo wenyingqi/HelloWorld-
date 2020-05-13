@@ -1,3 +1,15 @@
+/* This is a totally playable game! The reason why I call this only a prototype is because
+ * it is only like a tic-tac-toe game where the entire board is made up of X and O.
+ * The videos on video game are for graphics programming. And the reason why this prototype
+ * is far from the final game is because of it's lack of graphics (all you see is a bunch of X and O).
+ * A complete game involves sound, graphics, and proper user interface, which the prototype has none of.
+ * Therefore I say that these lines of code only consists the mechanism (algorithm) of the game.
+ * Nonetheless, this prototype is still a playable "game". 
+ * This game needs two players. One player is the O and the other player is the X. 
+ * Defeat your opponent.
+ */
+
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
