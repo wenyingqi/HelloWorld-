@@ -39,7 +39,8 @@ int main(void) {
 		turns++;
 		Sleep(1500);
 	} while (1);
-
+	
+	printboard(board);
 	winner(board);
 
 	system("PAUSE");
