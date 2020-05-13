@@ -64,7 +64,8 @@ int calculate(int board[LENGTH+2][LENGTH+2]) {
 	for (count1 = 1; count1 < LENGTH + 1; count1++) {
 		for (count2 = 1; count2 < LENGTH + 1; count2++) {
 
-			score = tempboard[count1 - 1][count2] + tempboard[count1 + 1][count2] + tempboard[count1][count2 - 1] + tempboard[count1][count2 + 1];
+			score = tempboard[count1 - 1][count2] + tempboard[count1 + 1][count2] + 
+				tempboard[count1][count2 - 1] + tempboard[count1][count2 + 1];
 
 			if (tempboard[count1][count2] == 0 && score > 0) {
 				countnum++;
