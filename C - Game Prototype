@@ -97,31 +97,39 @@ int calculate(int board[LENGTH+2][LENGTH+2]) {
 
 void printboard(int board[LENGTH+2][LENGTH + 2]) {
 
+	int count;
 	int count1;
 	int count2;
-	
-	system("cls");
-	
-	for (count1 = 0; count1 < LENGTH + 2; count1++) {
-		printf("-");
-	}
 
-	for (count1 = 1; count1 < LENGTH + 1; count1++) {
-		for (count2 = 1; count2 < LENGTH + 1; count2++) {
-			if (board[count1][count2] == 0)
-				printf("  ");
-			if (board[count1][count2] < 0)
-				printf("X ");
-			if (board[count1][count2] > 0)
-				printf("O ");
-		}
-		
-		printf("\n");
+	system("cls");
+
+	printf("   ");
+	for (count = 1; count < LENGTH + 1; count++) {
+		printf("|%2d ", count);
 	}
-	for (count1 = 0; count1 < LENGTH + 2; count1++) {
+	printf("|\n");
+	for (count = 0; count < 4 * LENGTH + 4; count++) {
 		printf("-");
 	}
 	printf("\n");
+	for (count1 = 1; count1 < LENGTH + 1; count1++) {
+		printf("%2d ", count1);
+		for (count2 = 1; count2 < LENGTH + 1; count2++) {
+			if (board[count1][count2] == 0)
+				printf("|   ");
+			if (board[count1][count2] < 0)
+				printf("| X ");
+			if (board[count1][count2] > 0)
+				printf("| O ");
+		}
+		
+		printf("|\n");
+		for (count = 0; count < 4 * LENGTH + 4; count++) {
+			printf("-");
+		}
+		printf("\n");
+	}
+
 	return;
 }
 
