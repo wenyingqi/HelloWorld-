@@ -99,7 +99,9 @@ void printboard(int board[LENGTH+2][LENGTH + 2]) {
 
 	int count1;
 	int count2;
-
+	
+	system("cls");
+	
 	for (count1 = 0; count1 < LENGTH + 2; count1++) {
 		printf("-");
 	}
