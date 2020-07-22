@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+void draw(int num, int posx, int posy, char array[][128]);
+void triangle(int posx, int posy, char array[][128]);
+
+int main(void) {
+
+	int size, arrsize, i ,j;
+	char array[128][128];
+
+	//Initializing the array
+	for (i = 0; i < 128; i++) {
+		for (j = 0; j < 128; j++) {
+			array[i][j] = 0;
+		}
+	}
+
+	printf("Enter the desired size here:\n");
+	scanf_s("%d", &size);
+
+	draw(size, 0, pow(2, size) - 1, array);
+	
+	// Printing the triangles
+	for (i = 0; i < pow(2, size); i++) {
+		for (j = 0; j < pow(2, size + 1); j++) {
+			printf("%c", array[i][j]);
+		}
+		printf("\n");
+	}
+
+	system("PAUSE");
+	return 0;
+}
+
+//The drawing of a single small triangle
+void triangle(int posy, int posx, char array[][128]) { 
+
+	array[posy][posx] = '/';
+	array[posy][posx + 1] = '\\';
+	array[posy + 1][posx - 1] = '/';                   
+	array[posy + 1][posx + 2] = '\\';
+	array[posy + 1][posx] = '_';
+	array[posy + 1][posx + 1] = '_';
+
+	return;
+}
+
+//Recursion
+void draw(int num, int posy, int posx, char array[][128]) { 
+
+	if (num == 1)
+		triangle(posy, posx, array);
+
+	else {
+		draw(num - 1, posy, posx, array);
+		draw(num - 1, posy + pow(2, num - 1), posx - pow(2, num - 1), array);
+		draw(num - 1, posy + pow(2, num - 1), posx + pow(2, num - 1), array);
+	}
+
+	return;
+}
